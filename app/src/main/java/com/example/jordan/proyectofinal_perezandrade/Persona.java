@@ -8,6 +8,7 @@ import android.os.Parcelable;
  */
 
 public class Persona implements Parcelable {
+    private String id;
     private String nombre;
     private String apellido;
     private String direccion;
@@ -72,6 +73,14 @@ public class Persona implements Parcelable {
         this.birthday = birthday;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -79,6 +88,7 @@ public class Persona implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.id);
         dest.writeString(this.nombre);
         dest.writeString(this.apellido);
         dest.writeString(this.direccion);
@@ -92,6 +102,7 @@ public class Persona implements Parcelable {
     }
 
     protected Persona(Parcel in){
+        this.id = in.readString();
         this.nombre = in.readString();
         this.apellido = in.readString();
         this.direccion = in.readString();
